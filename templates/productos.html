@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Módulo productos</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script src="../js/all.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../js/controller.js"></script>
+	<style >
+		.editarProd{
+			cursor:´pointer;
+		}
+		.borrarProd{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!--Brand-->
+		<a class="navbar-brand" href="#">Abarrotes el Trebol</a>
+		<img src="../img/logo1.png" alt="logo" style="width: 40px;">
+		<!--Toggler/collapse Button-->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span>
+	</button>
+
+	<!--Navbar links-->
+	<div class="collapse navbar-collapse" id="collapsibleNavbar"> 
+     <ul class=" navbar-nav">
+     	<li class="nav-item">
+     		<a class="nav-link" href="../index.html"><i class="fas fa-store"></i>PYME</a>
+     	</li>
+     	<li class="nav-item">
+     		<a class="nav-link" href="productos.html"><i class="fas fa-boxes"></i>Productos</a>
+     	</li>
+     	<li class="nav-item">
+     		<a class="nav-link" href=""><i class="fas fa-book"></i>Clasificacion</a>
+     	</li>
+     	<li class="nav-item">
+     		<a class="nav-link" href=""><i class="fas fa-shipping-fast"></i>Proveedores</a>
+     	</li>
+     </ul>
+	</div>
+	</nav>
+	<br>
+<h3 class="text-center">Administracion de productos</h3>
+<div class="row">
+	<div class="col-12 col-md-4 col-lg-4 col-xl-4">
+		<button class="btn btn-success btn-sm col-12 mb-2" id="habilitarformGuardar">Nuevo <i class="fas fa-plus"></i></button>
+		<form id="FormProd">
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">ID</span>
+				</div>
+				<input type="text" class="form-control" placeholder="ID del producto" id="idProductos" disabled>
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Código</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Codigo de barras" id="CodBarras">
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Producto</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Nombre del producto" id="NomProducto" >
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Precio Mayoreo</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Precio del producto" id="PrecioMayoreo">
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Precio Venta</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Precio del producto" id="PrecioVenta">
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Existencias</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Existencias del producto" id="Existencia">
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Medida</span>
+				</div>
+				<select class="selectpicker form-control" data-style="btn-primary" id="Medida">
+					<option value="" selected="true">--Selecciona una opcion--</option>
+					<option value="Gramos">Gramos</option>
+					<option value="Kilos">Kilos</option>
+					<option value="Litros">Litros</option>
+					<option value="Metros">Metros</option>
+					<option value="Piezas">Piezas</option>
+				</select>
+             </div>
+             <div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Estado</span>
+				</div>
+				<select class="selectpicker form-control" data-style="btn-primary" id="Status">
+					<option value="" selected="true">--Selecciona una opcion--</option>
+					<option value="Activo">Activo</option>
+					<option value="Inactivo">Inactivo</option>
+				</select>
+             </div>
+             <div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Observaciones</span>
+				</div>
+				<input type="text" class="form-control" placeholder="Observaciones del producto" id="Observaciones">
+			</div>
+			<div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">PYME</span>
+				</div>
+				<select class="selectpicker form-control" data-style="btn-primary" id="idPYME">
+					<option value="" selected="true">--Selecciona una opcion--</option>
+					<option value="1">Abarrotes el trebol</option>
+					<option value="2">Abarrotes lupita</option>
+					<option value="3"> Dos Lunas</option>
+					<option value="4">Hermanos Ruiz</option>
+					<option value="5">Forever 21</option>
+				</select>
+             </div>
+             <div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Clasificación</span>
+				</div>
+				<select class="selectpicker form-control" data-style="btn-primary" id="idClasificacion">
+					<option value="" selected="true">--Selecciona una opcion--</option>
+					<option value="1">Higiene Personal</option>
+					<option value="2">Refrescos</option>
+					<option value="3">Papeleria</option>
+					<option value="4">Electronica</option>
+					<option value="5">Ropa</option>
+				</select>
+             </div>
+             <div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Proveedor</span>
+				</div>
+				<select class="selectpicker form-control" data-style="btn-primary" id="idProveedores">
+					<option value="" selected="true">--Selecciona una opcion--</option>
+					<option value="1">Abarrotes Libres</option>
+					<option value="2">grupo pepe</option>
+					<option value="3">Modatelas</option>
+					<option value="4">Voltech</option>
+					<option value="5">Calvin Klein</option>
+					<option value="6">Zapateria Luna</option>
+				</select>
+             </div>
+             <div class="input-group input-group-sm mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text bg-secondary text-white">Fecha Actualizacion</span>
+				</div>
+				<input type="text" class="form-control" placeholder="DD/MM/AAAA" id="FechaModif">
+			</div>
+			<div class="btn-group btn-group-sm btn-group-justified col-12">
+				<button class="btn btn-success" id="guardarProducto" disabled>Guardar <i class="fas fa-plus"></i></button>
+				<button class="btn btn-warning" id="actualizarProducto" disabled>Actualizar <i class="fas fa-sync-alt"></i></button>
+				<button class="btn btn-danger" id="cancelar" disabled>cancelar <i class="fas fa-circle"></i></button>
+			</div>
+		</form>
+	</div>
+	<div class="col-12 col-md-8">
+		<div class="table-responsive">
+			<table class="table table-hover table-striped" id="tbProductos">
+				<thead> 
+					<tr>
+					<th>Opciones</th>
+					<th>ID</th>
+					<th>Código</th>
+					<th>Producto</th>
+					<th>Precio Mayore</th>
+					<th>Precio Venta</th>
+					<th>Existencia</th>
+					<th>Medida</th>
+					<th>Estado</th>
+					<th>Observaciones</th>
+					<th>Fecha Actualizacion</th>
+					<th>PYME</th>
+					<th>Clasificación</th>
+					<th>Proveedor</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div><hr>
+	</div>
+</div>
+</div>
+</body>
+</html>
